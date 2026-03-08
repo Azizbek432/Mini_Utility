@@ -58,12 +58,15 @@ clearAllBtn.addEventListener("click", () => {
 
 loadTasks();
 
-// ======= Pomodoro Timer =======
-let timer = 25 * 60; // 25 min
+// ======= Pomodoro Timer (Work & Break) =======
+let timer = 25 * 60;
 let interval = null;
+let isBreak = false;
+
 const timeDisplay = document.getElementById("timeDisplay");
 const startStopBtn = document.getElementById("startStop");
 const resetBtn = document.getElementById("reset");
+const timerTitle = document.querySelector(".timer h2");
 
 function updateTimerDisplay() {
   const minutes = Math.floor(timer / 60)
@@ -71,6 +74,20 @@ function updateTimerDisplay() {
     .padStart(2, "0");
   const seconds = (timer % 60).toString().padStart(2, "0");
   timeDisplay.textContent = `${minutes}:${seconds}`;
+}
+
+function switchMode() {
+  isBreak = !isBreak;
+  if (isBreak) {
+    timer = 5 * 60;
+    timerTitle.textContent = "Break Time! ☕";
+    timerTitle.style.color = "#28a745";
+  } else {
+    timer = 25 * 60;
+    timerTitle.textContent = "Pomodoro Timer 🍅";
+    timerTitle.style.color = "#000";
+  }
+  updateTimerDisplay();
 }
 
 startStopBtn.addEventListener("click", () => {
@@ -87,7 +104,13 @@ startStopBtn.addEventListener("click", () => {
         clearInterval(interval);
         interval = null;
         startStopBtn.textContent = "Start";
-        alert("Time is up!");
+        if (audioPlayer) audioPlayer.pause();
+        alert(
+          isBreak
+            ? "Break is over! Back to work!"
+            : "Work session done! Take a break.",
+        );
+        switchMode();
       }
     }, 1000);
     startStopBtn.textContent = "Pause";
@@ -97,13 +120,17 @@ startStopBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", () => {
   clearInterval(interval);
   interval = null;
+  isBreak = false;
   timer = 25 * 60;
+  timerTitle.textContent = "Pomodoro Timer 🍅";
+  timerTitle.style.color = "#000";
   updateTimerDisplay();
   startStopBtn.textContent = "Start";
 });
 
 updateTimerDisplay();
 
+// ======= Motivation =======
 const tips = [
   "Coding tip: Always comment your code for your future self.",
   "Chess tip: Control the center squares to dominate the board.",
@@ -121,6 +148,7 @@ const tips = [
   "Life tip: Practice gratitude; it changes your perspective on everything.",
   "Coding tip: Google is your best friend, don't be afraid to use it.",
 ];
+
 const motivationText = document.getElementById("motivationText");
 const newMotivationBtn = document.getElementById("newMotivation");
 
@@ -132,7 +160,7 @@ function showMotivation() {
 newMotivationBtn.addEventListener("click", showMotivation);
 showMotivation();
 
-// ======= Music Player Logic =======
+// ======= Music Player =======
 const musicUpload = document.getElementById("musicUpload");
 const customUploadBtn = document.getElementById("customUploadBtn");
 const audioPlayer = document.getElementById("audioPlayer");
@@ -158,7 +186,6 @@ playPauseBtn.addEventListener("click", () => {
     alert("Please upload a music file first!");
     return;
   }
-
   if (audioPlayer.paused) {
     audioPlayer.play();
     playPauseBtn.textContent = "Pause Music";
