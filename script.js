@@ -90,30 +90,42 @@ function switchMode() {
   updateTimerDisplay();
 }
 
+function startTimer() {
+  if (interval) return;
+  interval = setInterval(() => {
+    if (timer > 0) {
+      timer--;
+      updateTimerDisplay();
+    } else {
+      clearInterval(interval);
+      interval = null;
+      if (typeof audioPlayer !== "undefined" && audioPlayer)
+        audioPlayer.pause();
+      alert(
+        isBreak
+          ? "Break is over! Back to work!"
+          : "Work session done! Take a break.",
+      );
+      switchMode();
+      startTimer();
+      startStopBtn.textContent = "Pause";
+    }
+  }, 1000);
+  startStopBtn.textContent = "Pause";
+}
+
+function stopTimer() {
+  if (!interval) return;
+  clearInterval(interval);
+  interval = null;
+  startStopBtn.textContent = "Start";
+}
+
 startStopBtn.addEventListener("click", () => {
   if (interval) {
-    clearInterval(interval);
-    interval = null;
-    startStopBtn.textContent = "Start";
+    stopTimer();
   } else {
-    interval = setInterval(() => {
-      if (timer > 0) {
-        timer--;
-        updateTimerDisplay();
-      } else {
-        clearInterval(interval);
-        interval = null;
-        startStopBtn.textContent = "Start";
-        if (audioPlayer) audioPlayer.pause();
-        alert(
-          isBreak
-            ? "Break is over! Back to work!"
-            : "Work session done! Take a break.",
-        );
-        switchMode();
-      }
-    }, 1000);
-    startStopBtn.textContent = "Pause";
+    startTimer();
   }
 });
 
