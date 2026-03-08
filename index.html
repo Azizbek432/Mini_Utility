@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Utility Planner</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Daily Utility Planner</h1>
+
+      <!-- Todo list -->
+      <div class="todo">
+        <h2>Todo List</h2>
+        <div class="input-group">
+          <input
+            type="text"
+            id="taskInput"
+            placeholder="Yangi vazifa qo‘shing"
+          />
+          <button id="addTask">Add</button>
+        </div>
+        <ul id="taskList"></ul>
+        <button id="clearAll">Clear All</button>
+      </div>
+
+      <!-- Timer -->
+      <div class="timer">
+        <h2>Pomodoro Timer</h2>
+        <p id="timeDisplay">25:00</p>
+        <button id="startStop">Start</button>
+        <button id="reset">Reset</button>
+      </div>
+
+      <div class="music-section">
+        <h2>Focus Music</h2>
+        <input
+          type="file"
+          id="musicUpload"
+          accept="audio/*"
+          style="display: none"
+        />
+
+        <div class="music-controls">
+          <p id="trackName">No track selected</p>
+          <div class="button-group">
+            <button id="customUploadBtn">Upload Music</button>
+            <button id="playPauseMusic">Play Music</button>
+          </div>
+        </div>
+        <audio id="audioPlayer"></audio>
+      </div>
+
+      <!-- Daily motivation -->
+      <div class="motivation">
+        <h2>Motivational Tip</h2>
+        <p id="motivationText">Loading...</p>
+        <button id="newMotivation">Next Tip</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
