@@ -24,4 +24,5 @@ A minimalist yet powerful productivity hub built with vanilla JavaScript. This t
 
 ---
 
-## Live link(vercel):
+## 🚀 Live link(vercel):
+https://mini-utility.vercel.app/
