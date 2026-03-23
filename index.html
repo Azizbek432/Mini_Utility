@@ -11,7 +11,6 @@
     <div class="container">
       <h1>Daily Utility Planner</h1>
 
-      <!-- Todo list -->
       <div class="todo">
         <h2>Todo List</h2>
         <div class="input-group">
@@ -22,7 +21,6 @@
         <button id="clearAll">Clear All</button>
       </div>
 
-      <!-- Timer -->
       <div class="timer">
         <h2>Pomodoro Timer</h2>
         <p id="timeDisplay">25:00</p>
@@ -40,16 +38,28 @@
         />
 
         <div class="music-controls">
-          <p id="trackName">No track selected</p>
+          <p id="trackName">Current: Default Focus Track</p>
+
+          <div class="volume-container">
+            <span>Volume:</span>
+            <input
+              type="range"
+              id="volumeControl"
+              min="0"
+              max="1"
+              step="0.1"
+              value="0.5"
+            />
+          </div>
+
           <div class="button-group">
             <button id="customUploadBtn">Upload Music</button>
             <button id="playPauseMusic">Play Music</button>
           </div>
         </div>
-        <audio id="audioPlayer"></audio>
+        <audio id="audioPlayer" src="focus.mp3" loop></audio>
       </div>
 
-      <!-- Daily motivation -->
       <div class="motivation">
         <h2>Motivational Tip</h2>
         <p id="motivationText">Loading...</p>
