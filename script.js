@@ -99,7 +99,7 @@ function startTimer() {
     } else {
       clearInterval(interval);
       interval = null;
-      alert(isBreak ? "Back to work!" : "Take a break.");
+      alert(isBreak ? "Back to work!" : "Take a break!");
       switchMode();
     }
   }, 1000);
@@ -131,6 +131,20 @@ const tips = [
   "Consistency beats intensity. Keep going!",
   "Take a deep breath. Focus on one task at a time.",
   "Done is better than perfect.",
+  "Coding tip: Always comment your code for your future self.",
+  "Chess tip: Control the center squares to dominate the board.",
+  "Music tip: Practice 20 minutes daily rather than 3 hours once a week.",
+  "Motivation tip: Take small steps every day; consistency beats intensity.",
+  "Life tip: Drink enough water daily and stay hydrated.",
+  "Coding tip: Don't memorize code, understand the logic behind it.",
+  "Chess tip: Don't bring your Queen out too early in the game.",
+  "Music tip: Record your practice sessions to hear your progress.",
+  "Motivation tip: Your only limit is your mind. Stay focused.",
+  "Life tip: Get at least 7-8 hours of sleep to keep your brain sharp.",
+  "Chess tip: Always look for your opponent's threat before making a move.",
+  "Motivation tip: Done is better than perfect. Just start!",
+  "Life tip: Practice gratitude; it changes your perspective on everything.",
+  "Coding tip: Google is your best friend, don't be afraid to use it.",
 ];
 
 const motivationText = document.getElementById("motivationText");
@@ -143,7 +157,7 @@ function showMotivation() {
 newMotivationBtn.addEventListener("click", showMotivation);
 showMotivation();
 
-// ======= Music Player (YANGILANGAN) =======
+// ======= Music Player  =======
 const musicUpload = document.getElementById("musicUpload");
 const customUploadBtn = document.getElementById("customUploadBtn");
 const audioPlayer = document.getElementById("audioPlayer");
@@ -151,10 +165,8 @@ const playPauseBtn = document.getElementById("playPauseMusic");
 const trackName = document.getElementById("trackName");
 const volumeControl = document.getElementById("volumeControl");
 
-// Boshlang'ich ovoz darajasi
 audioPlayer.volume = volumeControl.value;
 
-// Ovozni sozlash
 volumeControl.addEventListener("input", (e) => {
   audioPlayer.volume = e.target.value;
 });
@@ -181,22 +193,3 @@ playPauseBtn.addEventListener("click", () => {
     playPauseBtn.textContent = "Play Music";
   }
 });
-
-// ======= Motivation =======
-// const tips = [
-//   "Coding tip: Always comment your code for your future self.",
-//   "Chess tip: Control the center squares to dominate the board.",
-//   "Music tip: Practice 20 minutes daily rather than 3 hours once a week.",
-//   "Motivation tip: Take small steps every day; consistency beats intensity.",
-//   "Life tip: Drink enough water daily and stay hydrated.",
-//   "Coding tip: Don't memorize code, understand the logic behind it.",
-//   "Chess tip: Don't bring your Queen out too early in the game.",
-//   "Music tip: Record your practice sessions to hear your progress.",
-//   "Motivation tip: Your only limit is your mind. Stay focused.",
-//   "Life tip: Get at least 7-8 hours of sleep to keep your brain sharp.",
-//   "Coding tip: Break large problems into smaller, manageable tasks.",
-//   "Chess tip: Always look for your opponent's threat before making a move.",
-//   "Motivation tip: Done is better than perfect. Just start!",
-//   "Life tip: Practice gratitude; it changes your perspective on everything.",
-//   "Coding tip: Google is your best friend, don't be afraid to use it.",
-// ];
